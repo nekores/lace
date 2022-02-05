@@ -1,0 +1,88 @@
+{
+  "info": [
+    {
+      "id": 0,
+      "key": "APY",
+      "value": "60%"
+    },
+    {
+      "id": 1,
+      "key": "Pool Size",
+      "value": "1.5M LACE"
+    },
+    {
+      "id": 2,
+      "key": "Maturity",
+      "value": "30 Days"
+    },
+    {
+      "id": 3,
+      "key": "Pool Size",
+      "value": "1.5M LACE"
+    },
+    {
+      "id": 4,
+      "key": "Total Staked",
+      "value": "242K LACE"
+    },
+    {
+      "id": 5,
+      "key": "ARY",
+      "value": "60%"
+    },
+    {
+      "id": 6,
+      "key": "Maturity",
+      "value": "30 Days"
+    },
+    {
+      "id": 7,
+      "key": "Total Staked",
+      "value": "242K LACE"
+    }
+  ],
+  "laces": [
+    {
+      "id": 1,
+      "title": "Guaranteed APY Staking",
+      "description": "Stake LACE token for guaranteed APY",
+      "detail": "NFT Airdrop Eligible!",
+      "status": "active",
+      "icon": "star",
+      "info": {
+        "balance": "2,432.44",
+        "staked": 0,
+        "earned": 0
+      },
+      "beltSpeed": 10
+    },
+    {
+      "id": 2,
+      "title": "Unlimited Staking",
+      "description": "Stake LACE for variable APY",
+      "detail": "",
+      "status": "active",
+      "icon": "photo",
+      "info": {
+        "balance": "2,432.44",
+        "staked": "2,000",
+        "earned": "128.54"
+      },
+      "beltSpeed": 8
+    },
+    {
+      "id": 3,
+      "title": "LP Staking",
+      "description": "Stake LP Tokens for LACE at High variable APY",
+      "detail": "",
+      "status": "active",
+      "icon": "layer",
+      "info": {
+        "balance": 0,
+        "staked": "48.24",
+        "earned": "834.54"
+      },
+      "beltSpeed": 6
+    }
+  ]
+}
