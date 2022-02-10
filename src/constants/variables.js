@@ -52,12 +52,17 @@ export const NETWORKS_CHAINS_HEX = {
   BSC_TEST_CHAIN_ID: '0x61',
 };
 
+// Address LACE Token:  0xAaF760Fa545c98Af3ff4ED7cc9AB5675B74fb755 //////
+// Address LP Token:  0x3DB62180ACEdFcd3B130b558A9be1aA5C00F2C43 ///////
+// Address LP Staking contract:  0x8E7eB99106b6E8c1F883c7872f5d060014A93330 ///////
+// Address Lovelace Staking contract:  0x591458bB6950771682037277fBEa8916c7f9Ed4E
+// Address Premium Staking contract:  0x94d9A1f3511dd2440ac4d78fF44fA8F0616DCb39
 export const CotractAddressesTestnet = {
-  laceToken: '0xAaF760Fa545c98Af3ff4ED7cc9AB5675B74fb755',
+  laceToken: '0xAaF760Fa545c98Af3ff4ED7cc9AB5675B74fb755', /////
+  lpToken: '0x3db62180acedfcd3b130b558a9be1aa5c00f2c43', ///////
+  lpStaking: '0x8E7eB99106b6E8c1F883c7872f5d060014A93330', ///////
   guaranteedApyStaking: '0xD5C207688523120a2b027f5BA4d1633232ab2376',
   unlimitedStaking: '0x51092214f8ceE2287aAD8B960AD4bAAbafAEA0Fe',
-  lpToken: '0x3db62180acedfcd3b130b558a9be1aa5c00f2c43',
-  lpStaking: '0x9818f351B015E03EC00BC955142626B6fd9D88ca',
 };
 
 export const CotractAddressesMainnet = {
