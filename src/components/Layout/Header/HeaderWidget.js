@@ -1,3 +1,4 @@
+/* eslint-disable no-unused-vars */
 import React, { useMemo, useState, useEffect } from 'react';
 import { makeStyles } from '@material-ui/core/styles';
 
@@ -34,6 +35,7 @@ const HeaderWidget = ({
   isLoggedInUser,
   network,
   accountChanged,
+  account,
   logout,
   chainId,
   login,
@@ -87,10 +89,10 @@ const HeaderWidget = ({
 
   return (
     <div className={classes.root}>
-      {isConnected ? (
+      {isLoggedInUser ? (
         <NFTMenu
           currentNetwork={currentNetwork}
-          currentAddress={accountChanged[0] || ''}
+          currentAddress={account || ''}
           menuList={networkList}
           onSelectNetwork={selectNetwork}
           onSwitchNetwork={() => setIsShowConnectModal(true)}
@@ -125,6 +127,7 @@ export default compose(
         isLoggedInUser,
         network,
         accountChanged,
+        account,
         logout,
         chainId,
         login,
@@ -133,6 +136,7 @@ export default compose(
       isLoggedInUser,
       network,
       accountChanged,
+      account,
       logout,
       chainId,
       login,

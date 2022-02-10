@@ -1,3 +1,4 @@
+/* eslint-disable no-unused-vars */
 import React from 'react';
 import { makeStyles } from '@material-ui/core/styles';
 import Button from '@material-ui/core/Button';
@@ -56,7 +57,7 @@ const NFTMenu = ({
       anchor={<NFTButton currentAddress={currentAddress} currentNetwork={currentNetwork} />}
     >
       <>
-        {menuList.map((menu) => (
+        {/* {menuList.map((menu) => (
           <div
             key={menu.type}
             className={classes.item}
@@ -65,17 +66,17 @@ const NFTMenu = ({
             <img className={classes.icon} src={Icons[menu.icon]} alt={menu.icon} />
             <Tiny>{`Switch to ${menu.name.length > 4 ? menu.name.toUpperCase() : menu.name}`}</Tiny>
           </div>
-        ))}
+        ))} */}
 
         {Boolean(menuList.length) && <Divider />}
 
-        <div
+        {/* <div
           className={classes.item}
           onClick={onSwitchNetwork}
         >
           <img src={Icons.swap} alt="swap" />
           <Tiny>Change Wallet Provider</Tiny>
-        </div>
+        </div> */}
         <div className={classes.buttonWrapper}>
           <Button
             className={classes.button}
