@@ -59,7 +59,7 @@ export const NETWORKS_CHAINS_HEX = {
 // Address Premium Staking contract:  0x94d9A1f3511dd2440ac4d78fF44fA8F0616DCb39
 export const CotractAddressesTestnet = {
   laceToken: '0xAaF760Fa545c98Af3ff4ED7cc9AB5675B74fb755',
-  guaranteedApyStaking: '0x94d9A1f3511dd2440ac4d78fF44fA8F0616DCb39',
+  guaranteedApyStaking: '0x6167B0EfEB661E0601Aca2Ce73B2c07E35743202',
   unlimitedStaking: '0x591458bB6950771682037277fBEa8916c7f9Ed4E',
   lpToken: '0x3db62180acedfcd3b130b558a9be1aa5c00f2c43',
   lpStaking: '0x8E7eB99106b6E8c1F883c7872f5d060014A93330',
