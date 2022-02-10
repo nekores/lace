@@ -53,7 +53,6 @@ const TokenInfo = () => {
     getLaceTokenInfo('lace')
       .then((result) => setTokenInfo(result));
   }, []);
-
   return (
     <div className={classes.root}>
       <div className={clsx(classes.wrapper, classes.animation)}>
@@ -62,7 +61,7 @@ const TokenInfo = () => {
             <div className={classes.item}>
               <Tiny color="textSecondary">Price:</Tiny>
               &nbsp;
-              <Tiny color="textSecondary">{tokenInfo.price.toFixed(2)}</Tiny>
+              <Tiny color="textSecondary">{Number(tokenInfo.price || 0).toFixed(2)}</Tiny>
             </div>
 
             <Dot />
@@ -70,7 +69,7 @@ const TokenInfo = () => {
             <div className={classes.item}>
               <Tiny color="textSecondary">Market cap:</Tiny>
               &nbsp;
-              <Tiny color="textSecondary">{tokenInfo.marketCap.toFixed(2)}</Tiny>
+              <Tiny color="textSecondary">{Number(tokenInfo.marketCap || 0).toFixed(2)}</Tiny>
             </div>
 
             <Dot />
@@ -78,7 +77,7 @@ const TokenInfo = () => {
             <div className={classes.item}>
               <Tiny color="textSecondary">Self Reported Circulating Supply:</Tiny>
               &nbsp;
-              <Tiny color="textSecondary">{tokenInfo.circulatingSupply.toFixed(2)}</Tiny>
+              <Tiny color="textSecondary">{Number(tokenInfo.circulatingSupply || 0).toFixed(2)}</Tiny>
             </div>
 
             <Dot />
@@ -86,7 +85,7 @@ const TokenInfo = () => {
             <div className={classes.item}>
               <Tiny color="textSecondary">Max Supply: </Tiny>
               &nbsp;
-              <Tiny color="textSecondary">{tokenInfo.maxSupply.toFixed(2)}</Tiny>
+              <Tiny color="textSecondary">{Number(tokenInfo.maxSupply || 0).toFixed(2)}</Tiny>
             </div>
 
             <Dot />
@@ -94,7 +93,7 @@ const TokenInfo = () => {
             <div className={classes.item}>
               <Tiny color="textSecondary">Total Supply:</Tiny>
               &nbsp;
-              <Tiny color="textSecondary">{tokenInfo.totalSupply.toFixed(2)}</Tiny>
+              <Tiny color="textSecondary">{Number(tokenInfo.totalSupply || 0).toFixed(2)}</Tiny>
             </div>
 
             <Dot />

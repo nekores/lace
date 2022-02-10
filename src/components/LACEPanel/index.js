@@ -8,7 +8,6 @@ import { compose, withProps } from 'recompose';
 import { inject, observer } from 'mobx-react';
 import Web3 from 'web3';
 import { NETWORKS_CHAINS } from 'constants/variables';
-import config from 'utils/config';
 import PanelHeader from '../PanelHeader';
 import InfoBelt from '../InfoBelt';
 import Initial from './Accesses/Initial';
@@ -296,8 +295,8 @@ const LACEPanel = ({
 
   useEffect(() => {
     if (currentAddress) {
-      if ((chainId === NETWORKS_CHAINS.BSC_TEST_CHAIN_ID && !config.isProduction)
-          || (currentAddress && chainId === NETWORKS_CHAINS.BSC_CHAIN_ID && config.isProduction)) {
+      if ((chainId === NETWORKS_CHAINS.BSC_TEST_CHAIN_ID)
+          || (currentAddress && chainId === NETWORKS_CHAINS.BSC_CHAIN_ID)) {
         defaultData();
       } else {
         setCurrentData(null);
