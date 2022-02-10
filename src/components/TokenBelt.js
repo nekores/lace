@@ -23,7 +23,7 @@ const useStyles = makeStyles((theme) => ({
   animation: {
     animationPlayState: 'running',
     animationName: '$flow',
-    animationDuration: '10s',
+    animationDuration: '30s',
     animationIterationCount: 'infinite',
     animationTimingFunction: 'linear',
   },
@@ -49,10 +49,10 @@ const TokenInfo = () => {
   const classes = useStyles();
   const [tokenInfo, setTokenInfo] = useState(null);
 
-  // useEffect(() => {
-  //   getLaceTokenInfo('lace')
-  //     .then((result) => setTokenInfo(result));
-  // }, []);
+  useEffect(() => {
+    getLaceTokenInfo('lace')
+      .then((result) => setTokenInfo(result));
+  }, []);
 
   return (
     <div className={classes.root}>

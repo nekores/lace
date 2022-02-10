@@ -1,4 +1,4 @@
-import { observable, action } from 'mobx';
+import { observable, action, makeObservable } from 'mobx';
 import Web3 from 'web3';
 import * as AuthHelper from '../helpers/auth';
 
@@ -22,6 +22,7 @@ class AuthStore {
   @observable ethEnabled = false;
 
   constructor() {
+    makeObservable(this);
     if (window.ethereum) {
       this.ethEnabled = true;
       this.metamaskEnabled = window.ethereum.isMetaMask;
@@ -53,7 +54,13 @@ class AuthStore {
       .on('chainChanged', (chainId) => this.setChainIdValue(parseInt(chainId, 16)));
 
     window.ethereum
-      .on('accountsChanged', (accounts) => { this.account = accounts; });
+      .on('accountsChanged', (accounts) => {
+        if (accounts.length > 0) {
+          this.account = accounts[0];
+        } else {
+          this.logout();
+        }
+      });
   }
 
   @action.bound login() {

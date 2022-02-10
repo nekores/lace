@@ -74,7 +74,7 @@ const Stake = ({
         )}
         <LaceForm
           resetInput={resetInput}
-          disabled={currentLoadingProcess !== ''}
+          // disabled={currentLoadingProcess === ''}
           currency={data.tokenName}
           maxValue={maxStakeValue}
           setError={handleError}
@@ -104,7 +104,7 @@ const Stake = ({
               size="medium"
               disabled={
                 inputError !== ''
-                || isIncreaseNeeded
+                || !isIncreaseNeeded
                 || currentLoadingProcess === 'STAKING'
               }
               onClick={onApprove}

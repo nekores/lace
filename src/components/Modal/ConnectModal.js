@@ -51,12 +51,12 @@ const ConnectItems = [
 const ConnectModal = ({
   isOpen,
   handleClose,
-  // onConnect,
+  onConnect,
 }) => {
   const classes = useStyles();
 
   const handleConnect = () => {
-    // onConnect();
+    onConnect();
     handleClose();
   };
 
@@ -95,12 +95,12 @@ const ConnectModal = ({
 ConnectModal.propTypes = {
   isOpen: PropTypes.bool,
   handleClose: PropTypes.func,
-  // onConnect: PropTypes.func,
+  onConnect: PropTypes.func,
 };
 
 ConnectModal.defaultProps = {
   isOpen: false,
-  // onConnect: () => null,
+  onConnect: () => null,
   handleClose: () => null,
 };
 

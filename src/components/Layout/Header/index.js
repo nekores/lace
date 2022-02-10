@@ -107,7 +107,7 @@ export default compose(
         isLoggedInUser,
         network,
       },
-      [STORE_KEYS.AUTHSTORE]: {
+      [STORE_KEYS.VIEWMODESTORE]: {
         toggleSidebar,
       },
     }) => ({

@@ -95,7 +95,7 @@ const UnStake = ({
             {' '}
             days. At the moment, you have the opportunity to unstake
             {' '}
-            {maxUnstakeValue.toFixed(2)}
+            {Number(maxUnstakeValue).toFixed(2)}
             {' '}
             {data.tokenName}
             {' '}
