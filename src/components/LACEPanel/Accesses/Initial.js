@@ -75,7 +75,7 @@ const Initial = ({
         <div className={classes.row}>
           <div className={classes.info}>
             <Title color="textPrimary">
-              {currentData.balance.toFixed(2)}
+              {Number(currentData.balance).toFixed(2)}
             </Title>
             <Tiny className={classes.description}>
               {`${data.tokenName} Balance`}
@@ -103,7 +103,7 @@ const Initial = ({
         <div className={classes.row}>
           <div className={classes.info}>
             <Title color="textPrimary">
-              {currentData.staked.toFixed(2)}
+              {Number(currentData.staked).toFixed(2)}
             </Title>
             <Tiny className={classes.description}>
               {`${data.tokenName} Staked`}
@@ -128,7 +128,7 @@ const Initial = ({
         <div className={classes.row}>
           <div className={classes.info}>
             <Title color="textPrimary">
-              {currentData.earned.toFixed(2)}
+              {Number(currentData.earned).toFixed(2)}
             </Title>
             <Tiny className={classes.description}>
               {data.limit ? 'Your reward' : 'LACE Earned'}

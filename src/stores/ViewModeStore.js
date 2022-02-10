@@ -1,9 +1,13 @@
-import { observable, action } from 'mobx';
+import { observable, action, makeObservable } from 'mobx';
 
 class ViewModeStore {
   @observable viewMode = false;
 
   @observable showSidebar = false;
+
+  constructor() {
+    makeObservable(this);
+  }
 
   @action.bound onConnect() {
     this.connected = true;

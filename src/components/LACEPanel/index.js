@@ -7,6 +7,8 @@ import moment from 'moment';
 import { compose, withProps } from 'recompose';
 import { inject, observer } from 'mobx-react';
 import Web3 from 'web3';
+import { NETWORKS_CHAINS } from 'constants/variables';
+import config from 'utils/config';
 import PanelHeader from '../PanelHeader';
 import InfoBelt from '../InfoBelt';
 import Initial from './Accesses/Initial';
@@ -33,12 +35,12 @@ const LACEPanel = ({
   isLoggedInUser,
   ethEnabled,
   account,
-  accountChanged,
+  chainId,
 }) => {
   const classes = useStyles();
 
   // const currentTokenType = data.type;
-  const currentAddress = accountChanged[0] || '';
+  const currentAddress = account || '';
   const loggedIn = isLoggedInUser && ethEnabled && account;
 
   const [currentAction, setCurrentAction] = useState(''); // '', 'stake', 'unstake', 'collect',
@@ -54,10 +56,6 @@ const LACEPanel = ({
   const [unstakeData, setUnstakeData] = useState(null);
   const [maxUnstakeVal, setMaxUnstakeVal] = useState('');
   const [percent, setPercent] = useState(0);
-
-  useEffect(() => {
-
-  }, [data]);
 
   const getDifferentBetweenLastUpdateAndCurrentTime = () => {
     if (!unstakeData?.userInfo?.lastUpdate) {
@@ -114,22 +112,25 @@ const LACEPanel = ({
 
   const getUnstakeData = async () => {
     const getCooldownPeriod = await StakingHelper.getCooldownPeriod(
-      StakingHelper.getContractAddresses(data.stakingAddress),
+      StakingHelper.getContractByAddress(data.stakingAddress),
       currentAddress,
     );
     const getUsersInfo = await StakingHelper.getUsersInfo(
-      StakingHelper.getContractAddresses(data.stakingAddress),
+      StakingHelper.getContractByAddress(data.stakingAddress),
       currentAddress,
     );
 
-    Promise.all([StakingHelper.getCooldownPeriod(getCooldownPeriod, getUsersInfo)])
+    Promise.all([getCooldownPeriod, getUsersInfo])
       .then(([cooldownPeriod, userInfo]) => {
         const { staked, locked, lastUpdate } = userInfo;
+        // const staked = Number(userInfo.staked);
+        // const locked = Number(userInfo.locked);
+        // const lastUpdate = Number(userInfo.lastUpdate);
         const currentUTCTime = moment().utc(false).valueOf();
         const diffSinceLastUpdate = Utils.toBN(currentUTCTime).minus((+lastUpdate) * 1000);
 
         if (diffSinceLastUpdate.lt(cooldownPeriod)) {
-          const unlockedTokens = (staked).minus(locked)
+          const unlockedTokens = Utils.toBN(staked).minus(locked)
             .plus(
               Utils.toBN(locked).multipliedBy(diffSinceLastUpdate).dividedBy(cooldownPeriod),
             );
@@ -177,7 +178,6 @@ const LACEPanel = ({
         data.stakingAddress,
         StakingHelper.getContractByAddress(data.tokenAddress),
       );
-
     if (increaseAloowanceResult) {
       setIsIncreaseNeeded(false);
       setCurrentAllowance(currentTokenValue);
@@ -188,20 +188,23 @@ const LACEPanel = ({
   };
 
   const defaultData = async () => {
-    const newAllowance = Utils.convertFrom(await StakingHelper.getAllowance(
-      currentAddress,
-      data.stakingAddress,
-      StakingHelper.getContractByAddress(data.tokenAddress),
-    ));
-    setCurrentAllowance(newAllowance);
+    try {
+      const newAllowance = Utils.convertFrom(await StakingHelper.getAllowance(
+        currentAddress,
+        data.stakingAddress,
+        StakingHelper.getContractByAddress(data.tokenAddress),
+      ));
+      setCurrentAllowance(newAllowance);
 
-    const newCurrentData = await StakingHelper.getDefaultData(
-      StakingHelper.getContractByAddress(data.stakingAddress),
-      StakingHelper.getContractByAddress(data.tokenAddress),
-      currentAddress,
-      data.limit,
-    );
-    setCurrentData(newCurrentData);
+      const newCurrentData = await StakingHelper.getDefaultData(
+        StakingHelper.getContractByAddress(data.stakingAddress),
+        StakingHelper.getContractByAddress(data.tokenAddress),
+        currentAddress,
+        data.limit,
+      );
+      setCurrentData(newCurrentData);
+    // eslint-disable-next-line no-empty
+    } catch (error) { }
   };
 
   const back = async () => {
@@ -216,13 +219,12 @@ const LACEPanel = ({
   const stake = async () => {
     setIsSuccessAction(false);
     setResetInput(false);
-    const newAllowance = Utils.convertFrom(
-      await StakingHelper.getAllowance(
-        currentAddress,
-        data.stakingAddress,
-        StakingHelper.getContractByAddress(data.tokenAddress),
-      ),
+    const res = await StakingHelper.getAllowance(
+      currentAddress,
+      data.stakingAddress,
+      StakingHelper.getContractByAddress(data.tokenAddress),
     );
+    const newAllowance = Utils.convertFrom(res);
     setCurrentAllowance(newAllowance);
     setCurrentLoadingProgress('STAKING');
 
@@ -291,6 +293,20 @@ const LACEPanel = ({
   const getInputError = (event) => {
     setInputError(event);
   };
+
+  useEffect(() => {
+    if (currentAddress) {
+      if ((chainId === NETWORKS_CHAINS.BSC_TEST_CHAIN_ID && !config.isProduction)
+          || (currentAddress && chainId === NETWORKS_CHAINS.BSC_CHAIN_ID && config.isProduction)) {
+        defaultData();
+      } else {
+        setCurrentData(null);
+      }
+    } else {
+      setCurrentData(null);
+    }
+  // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [currentAddress, chainId]);
 
   return (
     <Paper
@@ -380,12 +396,14 @@ export default compose(
         ethEnabled,
         account,
         accountChanged,
+        chainId,
       },
     }) => ({
       isLoggedInUser,
       ethEnabled,
       account,
       accountChanged,
+      chainId,
     }),
   ),
 )(LACEPanel);

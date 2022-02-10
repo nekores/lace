@@ -34,14 +34,14 @@ export function pow10(decimals) {
   return bn10PowLookupMap.get(decimals);
 }
 
-export function normalizeBN(value, decimals) {
+export function normalizeBN(value, decimals = 18) {
   return valueToBigNumber(value).dividedBy(pow10(decimals));
 }
 
-export function normalizeValue(value, decimals) {
+export function normalizeValue(value, decimals = 18) {
   return normalizeBN(value, decimals).toString(10);
 }
 
-export function convertToDecimals(value, decimals) {
+export function convertToDecimals(value, decimals = 18) {
   return valueToBigNumber(value || 0).multipliedBy(valueToBigNumber(10).pow(decimals)).dp(0).toString();
 }

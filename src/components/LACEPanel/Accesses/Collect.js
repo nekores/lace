@@ -65,7 +65,7 @@ const Collect = ({
         )}
         {
           <div className={classes.collectValue}>
-            {currentData.earned.toFixed(2)}
+            {Number(currentData.earned).toFixed(2)}
           </div>
         }
       </div>
