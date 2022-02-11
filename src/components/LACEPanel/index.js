@@ -145,8 +145,7 @@ const LACEPanel = ({
   };
 
   const getStakeValueChange = (event, action = 'stake') => {
-    if (event) setCurrentTokenValue(event.toString());
-    else setCurrentTokenValue('0');
+    setCurrentTokenValue(event.toString());
     setIsIncreaseNeeded(Number(currentAllowance) < event);
 
     if (action !== 'stake') {

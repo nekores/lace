@@ -74,6 +74,8 @@ const LaceForm = ({
             placeholder="0"
             value={value}
             onChange={(event) => handleChange(event.target.value)}
+            onMouseLeave={() => value || onChangeValue('0')}
+            onClick={() => (value === '0' ? onChangeValue('') : value)}
           />
           <TinyBold>{currency}</TinyBold>
         </div>
